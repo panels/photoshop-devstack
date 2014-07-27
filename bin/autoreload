@@ -1,0 +1,4 @@
+#!/bin/bash
+DEVSTACK="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )/../panel-photoshop-devstack"
+
+"$DEVSTACK/node_modules/.bin/coffee" "$DEVSTACK/lib/autoreload.coffee"
