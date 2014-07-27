@@ -4,7 +4,7 @@ execSync = require 'exec-sync'
 color = require 'bash-color'
 spawn = require('child_process').spawn
 
-coffee = execSync('npm bin coffee') + '/coffee'
+coffee = path.resolve __dirname, '..', 'node_modules', '.bin', 'coffee'
 buildBackend = path.resolve __dirname, 'build-backend.coffee'
 generator = path.resolve __dirname, '..', 'node_modules', 'generator-core', 'app'
 
