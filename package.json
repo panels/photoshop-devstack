@@ -15,6 +15,10 @@
     "url": "https://github.com/panels/photoshop-devstack/issues"
   },
   "author": "Marek Hrabe <marekhrabe@abdoc.net> (https://github.com/marekhrabe)",
+  "contributors": [
+    "Marek Hrabe <marekhrabe@abdoc.net> (https://github.com/marekhrabe)",
+    "Tomas Ruzicka <tomasruzicka@abdoc.net> (https://github.com/lezuse)"
+  ],
   "license": "MIT",
   "dependencies": {
     "bash-color": "0.0.3",
@@ -22,6 +26,7 @@
     "este-watch": "0.0.4",
     "exec-sync": "^0.1.6",
     "generator-core": "adobe-photoshop/generator-core",
-    "recursive-uglifyjs": "^0.1.2"
+    "recursive-uglifyjs": "^0.1.2",
+    "gulp": "~3.8.7"
   }
 }
