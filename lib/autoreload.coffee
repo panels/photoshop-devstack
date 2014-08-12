@@ -2,11 +2,12 @@ path = require 'path'
 esteWatch = require 'este-watch'
 execSync = require 'exec-sync'
 color = require 'bash-color'
-spawn = require('child_process').spawn
+fork = require('child_process').fork
 
 coffee = path.resolve __dirname, '..', 'node_modules', '.bin', 'coffee'
 buildBackend = path.resolve __dirname, 'build-backend.coffee'
 generator = path.resolve __dirname, '..', 'node_modules', 'generator-core', 'app'
+node = process.execPath
 
 log = (msg) ->
   console.log ''
@@ -15,7 +16,7 @@ log = (msg) ->
 
 buildAndRun = ->
   execSync "#{coffee} #{buildBackend}"
-  spawn 'sh', ['-c', "node #{generator} -f ."], stdio: 'inherit'
+  fork generator, ['-f', '.'], execArgv: ['--debug']
 
 log 'Starting server'
 server = buildAndRun()
