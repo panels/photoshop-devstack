@@ -31,3 +31,7 @@ watcher = esteWatch ['src'], (e) ->
   server = buildAndRun()
 
 watcher.start()
+
+process.once 'SIGTERM', ->
+  server.kill?('SIGINT')
+  process.exit(0)
