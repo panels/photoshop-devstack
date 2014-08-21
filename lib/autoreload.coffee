@@ -15,7 +15,7 @@ log = (msg) ->
   console.log ''
 
 buildAndRun = ->
-  execSync "#{coffee} #{buildBackend}"
+  execSync "#{coffee} #{buildBackend} --dev"
   fork generator, ['-f', '.'], execArgv: ['--debug']
 
 log 'Starting server'
