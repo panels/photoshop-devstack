@@ -10,4 +10,4 @@ execSync "#{coffee} -o lib src"
 gulp.src 'src/**/*.js'
   .pipe gulp.dest 'lib'
   .on 'end', () ->
-    execSync "#{uglify} lib"
+    execSync "#{uglify} lib" unless '--dev' in process.argv
