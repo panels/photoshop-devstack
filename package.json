@@ -2,6 +2,9 @@
   "name": "panel-photoshop-devstack",
   "version": "1.0.4",
   "description": "Devstack for building and debugging Photoshop panel",
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org"
+  },
   "bin": {
     "run-generator": "bin/run-generator",
     "autoreload": "bin/autoreload",
