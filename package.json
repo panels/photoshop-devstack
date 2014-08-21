@@ -1,6 +1,6 @@
 {
   "name": "panel-photoshop-devstack",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Devstack for building and debugging Photoshop panel",
   "bin": {
     "run-generator": "bin/run-generator",
