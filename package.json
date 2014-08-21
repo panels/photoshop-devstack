@@ -1,6 +1,6 @@
 {
   "name": "panel-photoshop-devstack",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Devstack for building and debugging Photoshop panel",
   "publishConfig": {
     "registry": "https://registry.npmjs.org"
