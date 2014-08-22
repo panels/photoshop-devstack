@@ -8,7 +8,8 @@
   "bin": {
     "run-generator": "bin/run-generator",
     "autoreload": "bin/autoreload",
-    "build-backend": "bin/build-backend"
+    "build-backend": "bin/build-backend",
+    "get-panel": "bin/get-panel"
   },
   "repository": {
     "type": "git",
