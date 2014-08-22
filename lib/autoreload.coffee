@@ -16,7 +16,15 @@ log = (msg) ->
 
 buildAndRun = ->
   execSync "#{coffee} #{buildBackend} --dev"
-  fork generator, ['-f', '.'], execArgv: ['--debug']
+  server = fork generator, ['-f', '.'], execArgv: ['--debug']
+  server.on 'close', (code) ->
+    if code is 0
+      log 'Restarting Generator in 3s'
+      setTimeout () ->
+          server = null
+          server = buildAndRun()
+      , 3000
+
 
 log 'Starting server'
 server = buildAndRun()
