@@ -24,6 +24,7 @@ buildAndRun = ->
           server = null
           server = buildAndRun()
       , 3000
+  server
 
 
 log 'Starting server'
