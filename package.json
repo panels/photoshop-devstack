@@ -9,7 +9,8 @@
     "run-generator": "bin/run-generator",
     "autoreload": "bin/autoreload",
     "build-backend": "bin/build-backend",
-    "get-panel": "bin/get-panel"
+    "get-panel": "bin/get-panel",
+    "flatten": "bin/flatten"
   },
   "repository": {
     "type": "git",
@@ -31,6 +32,9 @@
     "exec-sync": "^0.1.6",
     "generator-core": "adobe-photoshop/generator-core",
     "recursive-uglifyjs": "^0.1.2",
-    "gulp": "~3.8.7"
+    "gulp": "~3.8.7",
+    "glob": "~4.0.6",
+    "temp": "~0.8.1",
+    "flatten-deps": "~0.2.1"
   }
 }
