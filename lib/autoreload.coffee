@@ -3,6 +3,7 @@ esteWatch = require 'este-watch'
 execSync = require 'exec-sync'
 color = require 'bash-color'
 fork = require('child_process').fork
+psTree = require 'ps-tree'
 
 coffee = path.resolve __dirname, '..', 'node_modules', '.bin', 'coffee'
 buildBackend = path.resolve __dirname, 'build-backend.coffee'
@@ -34,10 +35,16 @@ watcher = esteWatch ['src'], (e) ->
   log 'Change in filesystem detected, restarting'
 
   if server
-    server.kill 'SIGINT'
-    server = null
+    psTree server.pid, (err, children) ->
+      children.unshift PID: server.pid
 
-  server = buildAndRun()
+      children.forEach (child) ->
+        try execSync "kill -9 #{child.PID}"
+
+      server = null
+      server = buildAndRun()
+  else
+    server = buildAndRun()
 
 watcher.start()
 
