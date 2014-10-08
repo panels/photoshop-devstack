@@ -29,7 +29,6 @@
     "bash-color": "0.0.3",
     "coffee-script": "^1.7.1",
     "este-watch": "0.0.4",
-    "exec-sync": "^0.1.6",
     "generator-core": "adobe-photoshop/generator-core",
     "recursive-uglifyjs": "^0.1.2",
     "gulp": "~3.8.7",
