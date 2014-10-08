@@ -36,8 +36,12 @@ link = ->
 checkInstalled = ->
   if fs.existsSync panelPath
     log '\'' + panelName + '\' installed'
-    stat = fs.statSync panelPath
-    log
+
+    stat = fs.lstatSync panelPath
+    if stat.isSymbolicLink()
+      log 'Local symlink: ', fs.readlinkSync panelPath
+    else
+      log 'From npm registry'
 
     if fs.existsSync panelResolvedPath
       panelPackagePath = path.join panelResolvedPath, 'package.json'
