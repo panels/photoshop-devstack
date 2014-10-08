@@ -2,12 +2,12 @@ fs = require 'fs'
 path = require 'path'
 glob = require 'glob'
 temp = require 'temp'
-execSync = require 'exec-sync'
+exec = require('child_process').exec
 flatten = require 'flatten-deps'
 
-run = (cmd) ->
+run = (cmd, cb) ->
   console.log "> #{cmd}"
-  execSync cmd
+  exec cmd, cb
 
 repoDir = process.cwd()
 packagePath = path.join repoDir, 'package.json'
@@ -28,19 +28,19 @@ if files[0]?
   console.log 'Using tmp dir', tempDir
 
   console.log 'Extracting file', file
-  res = run 'tar -xf ' + file + ' -C ' + tempDir
-  console.log res
+  run 'tar -xf ' + file + ' -C ' + tempDir, (err, out, stderr) ->
+    console.log out
 
-  console.log 'Cleaning dependencies ...'
-  packageDir = path.join tempDir, 'package'
-  flatten packageDir
+    console.log 'Cleaning dependencies ...'
+    packageDir = path.join tempDir, 'package'
+    flatten packageDir
 
-  # fs.renameSync packageDir, './package-' + meta.version
+    # fs.renameSync packageDir, './package-' + meta.version
 
-  console.log 'Creating tar ...'
-  tarFile = meta.name + '-' + meta.version + '.build.tgz'
-  res = run 'tar -czf ' + tarFile + ' -C ' + tempDir + ' package'
-  console.log res
+    console.log 'Creating tar ...'
+    tarFile = meta.name + '-' + meta.version + '.build.tgz'
+    run 'tar -czf ' + tarFile + ' -C ' + tempDir + ' package', (err, out, stderr) ->
+      console.log out
 
 else
   console.log 'No archives found. Run `npm pack` first.'
