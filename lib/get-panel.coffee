@@ -12,8 +12,13 @@ metadata = require packagePath
 # node_modules linked path
 panelPath = metadata.panel?.static
 
+log = (args) ->
+  args = Array.prototype.slice.call arguments
+  args.unshift '[get-panel]'
+  console.log.apply console, args
+
 if not panelPath
-  console.log '[get-panel] No \'panel.static\' key in package.json'
+  log 'No \'panel.static\' key in package.json'
   return
 
 panelName = path.basename panelPath
@@ -23,30 +28,32 @@ panelResolvedPath = path.join repoDir, '..', panelName
 
 link = ->
   if fs.existsSync panelResolvedPath
-    console.log '[get-panel] Linking `../' + panelName + '`'
+    log 'Linking `../' + panelName + '`'
     exec 'npm link "' + panelResolvedPath + '"',
       (err, stdout, stderr) ->
-        console.log stdout
+        log stdout
 
 checkInstalled = ->
   if fs.existsSync panelPath
-    console.log '[get-panel] \'' + panelName + '\' installed'
+    log '\'' + panelName + '\' installed'
+    stat = fs.statSync panelPath
+    log
 
     if fs.existsSync panelResolvedPath
       panelPackagePath = path.join panelResolvedPath, 'package.json'
       panelMeta = require panelPackagePath
-      console.log '[get-panel] version ' + panelMeta.version
+      log 'version ' + panelMeta.version
       return true
   false
 
 if not checkInstalled()
-  console.log '[get-panel] \'' + panelName + '\' link not found'
+  log '\'' + panelName + '\' link not found'
 
   if not fs.existsSync panelResolvedPath
     url = GIT_CLONE_URL.replace '%repo%', panelName
 
-    console.log '[get-panel] Panel `../' + panelName + '` not found'
-    console.log '[get-panel] Auto-clonning from `' + url + '`'
+    log 'Panel `../' + panelName + '` not found'
+    log 'Auto-clonning from `' + url + '`'
 
     exec 'git clone "' + url + '" "' + panelResolvedPath + '"',
       (err, stdout, stderr) ->
