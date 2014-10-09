@@ -10,6 +10,9 @@ buildBackend = path.resolve __dirname, 'build-backend.coffee'
 generator = path.resolve __dirname, '..', 'node_modules', 'generator-core', 'app'
 node = process.execPath
 
+if not require('fs').existsSync coffee
+  coffee = path.resolve 'node_modules', '.bin', 'coffee'
+
 log = (msg) ->
   console.log ''
   console.log "#{color.green('[panel-photoshop-devstack]')} #{msg}"
