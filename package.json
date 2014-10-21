@@ -10,7 +10,8 @@
     "autoreload": "bin/autoreload",
     "build-backend": "bin/build-backend",
     "get-panel": "bin/get-panel",
-    "flatten": "bin/flatten"
+    "flatten": "bin/flatten",
+    "build-clean": "bin/build-clean.sh"
   },
   "repository": {
     "type": "git",
