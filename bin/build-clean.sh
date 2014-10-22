@@ -4,6 +4,10 @@ usage() {
   echo "Usage: build-clean.sh --slug productname --main main.coffee --remote-disk \"/path/to\" --remote \"/path/to/remote\" --cert-pass password"
 }
 
+info() {
+  echo -e "\n[\033[0;35mbuild-clean\033[0m] $1\n"
+}
+
 while [[ $# > 1 ]]
 do
   key="$1"
@@ -41,15 +45,10 @@ do
   esac
 done
 
-if [ "x$PRODUCT_SLUG" == "x" ]; then echo "No slug provided." && usage && exit 1; fi
+if [ "x$PRODUCT_SLUG" == "x" ]; then info "No slug provided." && usage && exit 1; fi
 
 HASH=`git rev-parse --short HEAD`
 START=`date +%s`
-
-info() {
-  echo -e "\n[\033[0;35mbuild-clean\033[0m] $1\n"
-}
-
 
 info "Checking for clean repo ..."
 # Cancel when repo dirty
