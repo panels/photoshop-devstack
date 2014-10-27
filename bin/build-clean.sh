@@ -48,6 +48,7 @@ done
 if [ "x$PRODUCT_SLUG" == "x" ]; then info "No slug provided." && usage && exit 1; fi
 
 HASH=`git rev-parse --short HEAD`
+BRANCH=`git rev-parse --abbrev-ref HEAD`
 START=`date +%s`
 
 info "Checking for clean repo ..."
@@ -106,7 +107,7 @@ fi
 
 info "Checking out master ..."
 # Get back
-git checkout --quiet master
+git checkout --quiet "$BRANCH"
 
 END=`date +%s`
 TOTAL=`echo "$END - $START" | bc`
