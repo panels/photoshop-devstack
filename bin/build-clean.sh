@@ -66,7 +66,7 @@ git checkout --quiet --detach `git rev-parse HEAD`
 if [ -e "$MAIN" ]; then
   info "Setting PRODUCTION var ..."
   # Set production flag
-  sed -i 's/\s*PRODUCTION\s*=.*/PRODUCTION = true/' "$MAIN"
+  sed -i 's/[[:space:]]*PRODUCTION[[:space:]]*=.*/PRODUCTION = true/' "$MAIN"
 fi
 
 info "Cleaning, linking and installing dependencies ..."
